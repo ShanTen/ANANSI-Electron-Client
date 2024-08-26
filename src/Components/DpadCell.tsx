@@ -56,6 +56,9 @@ const Dpad = () => {
 
     return (
         <div className="flex flex-col items-center justify-center bg-slate-500 rounded-lg">
+            <div className="flex items-start mb-5 font-bold text-4xl">
+                D-Pad
+            </div>
             <div className="flex items-center justify-center">
                 <img id="arrow-up" src={ArrowSVG} alt="up" className="h-10 w-10 hover:scale-125" onClick={() => sendCommand("up")}/>
             </div>
