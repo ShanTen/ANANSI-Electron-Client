@@ -1,0 +1,16 @@
+Sensors To Interface/Flows to have:
+    1. Temperate Sensor -> Counter display (with 9 segment display type)
+    2. Pressure Sensor -> Counter display 
+    3. Uptime Counter -> Counter display
+    4. Gas Sensor -> Counter display
+
+Media
+    3. Audio 
+    4. Camera
+    5. LiDAR Data (ignore for now)
+
+
+Screens:
+    1. Sensor Metrics -> SenTrix Console
+    2. Audio Video Telemetry -> AVT Dashboard
+    
