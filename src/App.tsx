@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/electron-vite.animate.svg'
 import './App.css'
@@ -42,7 +42,7 @@ function HomePage() {
 function App(){
     return (<Router>
       <Routes>
-        <Route path="/"  element={<HomePage />} />
+        <Route path="/"  element={<SensorConsole />} />
         <Route path="/sentrix" element={<SensorConsole />} />
       </Routes>
     </Router>)

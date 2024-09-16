@@ -1,5 +1,5 @@
 import ArrowSVG from '../assets/top-arrow-icon.svg'
-import API_HOST from '../../api.config';
+import {API_HOST} from '../../api.config';
 import axios from 'axios';
 import { useEffect } from 'react';
 
@@ -27,22 +27,22 @@ const handleKeyPress = (event : any) => {
     switch (event.key) {
       case 'w':
       case 'W':
-        sendCommand("up")
+        sendCommand("UPED")
         tmpScaleOnKeyPress('arrow-up')
         break;
       case 'a':
       case 'A':
-          sendCommand('left');
+          sendCommand('LEFT');
           tmpScaleOnKeyPress('arrow-left')
         break;
       case 's':
       case 'S':
-          sendCommand('down');
+          sendCommand('DOWN');
           tmpScaleOnKeyPress('arrow-down')
         break;
       case 'd':
       case 'D':
-          sendCommand('right');
+          sendCommand('RITE');
           tmpScaleOnKeyPress('arrow-right')
         break;
       default:
@@ -57,17 +57,17 @@ const Dpad = () => {
     return (
         <div className="flex flex-col items-center justify-center bg-slate-500 rounded-lg">
             <div className="flex items-start mb-5 font-bold text-4xl">
-                D-Pad
+                Direction Control
             </div>
             <div className="flex items-center justify-center">
-                <img id="arrow-up" src={ArrowSVG} alt="up" className="h-10 w-10 hover:scale-125" onClick={() => sendCommand("up")}/>
+                <img id="arrow-up" src={ArrowSVG} alt="up" className="h-10 w-10 hover:scale-125" onClick={() => sendCommand("UPED")}/>
             </div>
             <div className="flex items-center justify-between gap-x-10">
-                <img id="arrow-left" src={ArrowSVG} alt="left" className="h-10 w-10 transform -rotate-90 hover:scale-125" onClick={() => sendCommand("left")}/>
-                <img id="arrow-right" src={ArrowSVG} alt="right" className="h-10 w-10 transform rotate-90 hover:scale-125" onClick={() => sendCommand("right")}/>
+                <img id="arrow-left" src={ArrowSVG} alt="left" className="h-10 w-10 transform -rotate-90 hover:scale-125" onClick={() => sendCommand("LEFT")}/>
+                <img id="arrow-right" src={ArrowSVG} alt="right" className="h-10 w-10 transform rotate-90 hover:scale-125" onClick={() => sendCommand("RITE")}/>
             </div>
             <div className="flex items-center justify-center">
-                <img id="arrow-down" src={ArrowSVG} alt="down" className="h-10 w-10 transform rotate-180 hover:scale-125" onClick={() => sendCommand("down")}/>
+                <img id="arrow-down" src={ArrowSVG} alt="down" className="h-10 w-10 transform rotate-180 hover:scale-125" onClick={() => sendCommand("DOWN")}/>
             </div>
         </div>
     )

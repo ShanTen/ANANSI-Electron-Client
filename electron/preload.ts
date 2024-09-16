@@ -22,3 +22,9 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
   // You can expose other APTs you need here.
   // ...
 })
+
+contextBridge.exposeInMainWorld('electronAPI', {
+  onUDPMessage: (callback: (message: string) => void) => {
+    ipcRenderer.on('udp-message', (_, message) => callback(message));
+  },
+});

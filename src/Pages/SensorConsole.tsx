@@ -1,6 +1,6 @@
 import '../App.css'
 import axios from 'axios'
-import API_HOST from '../../api.config';
+import { API_HOST } from '../../api.config';
 import { useEffect, useState } from 'react'
 
 import TitleBar from '../Components/TitleBar'
@@ -15,12 +15,14 @@ const SensorConsole = () => {
     const [data, setData] = useState<any>([])
 
     useEffect(() => {
-        console.log(`fetching data from ${API_HOST}`)
-        axios.get(API_HOST)
-        .then((response) => {
-            console.log(response.data)
-            setData(response.data)
-        })
+        setInterval(()=> {
+            console.log(`fetching data from ${API_HOST}`)
+            axios.get(`${API_HOST}/sensor-data`)
+            .then((response) => {
+                console.log(response.data)
+                setData(response.data)
+            })    
+        }, 1000);
     }, [])
 
     return (

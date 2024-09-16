@@ -1,36 +1,66 @@
 import { useEffect, useState } from 'react';
 
+function PolarToCartesianWithScaling(angle : number, radius: number){
+
+  const thetaRadians = angle * (Math.PI / 180);
+    // Constants
+    const MAX_RADIUS = 8000;
+    const SCALE_FACTOR = 200 / MAX_RADIUS;
+
+  let x = radius * Math.cos(thetaRadians) * SCALE_FACTOR;
+  let y =  radius * Math.sin(thetaRadians) * SCALE_FACTOR;
+  return {x, y}
+}
+
 const LiDARScanner = () => {
     const [dots, setDots] = useState<any>([]);
-    const [updateDots, setUpdateDots] = useState(true);
+    // const [updateDots, setUpdateDots] = useState(true);
+
+    useEffect(() => {    
+      if (window.electronAPI) {
+        /*Get dots from socket*/
+        window.electronAPI.onUDPMessage((msg) => {            
+          let newDots = [];
+          let rawData = JSON.parse(msg)
+          for (let i = 0; i < rawData.length; i++) {
+            const dot = rawData[i];
+            const { x, y } = PolarToCartesianWithScaling(dot[0], dot[1]);
+            newDots.push({ x: 25 + x, y: 25 + y }); //this is the center of the circle
+          }
+          setDots(newDots)
+      })
+
+      }  
+  }, [])
 
     const animationStyle = {
         '@keyframes spin': {
           from: { transform: 'rotate(0deg)' },
           to: { transform: 'rotate(360deg)' },
         },
-        animation: 'spin 3s linear infinite',
+        animation: 'spin 2s linear infinite',
       };
 
-    const generateDots = () => {
-        const newDots = [];
-        for (let i = 0; i < 20; i++) {
-          const x = Math.random() * 100;
-          const y = Math.random() * 70;
-          newDots.push({ x, y });
-        }
-    setDots(newDots);
-    setUpdateDots(true);
-    };
+    // demo to see how the thing finally looks like
+    // const generateDots = () => {
+    //     const newDots = [];
+    //     for (let i = 0; i < 20; i++) {
+    //       const x = Math.random() * 100;
+    //       const y = Math.random() * 70;
+    //       newDots.push({ x, y });
+    //     }
 
+    // setDots(newDots);
+    // setUpdateDots(true);
+    // };
   
     // Generate random dots on the SVG
-    useEffect(() => {
-        if(updateDots) {
-            setTimeout(generateDots, 3000);
-            setUpdateDots(false);
-        }
-    });
+    // useEffect(() => {
+    //     if(updateDots) {
+    //         setTimeout(generateDots, 3000);
+    //         setUpdateDots(false);
+    //     }
+    // });
   
     return (
     <div className="border-2 border-dotted border-gray-400 flex items-center justify-center h-60 rounded-xl" >
