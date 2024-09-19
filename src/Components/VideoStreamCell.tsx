@@ -8,7 +8,7 @@ const VideoStream = () => {
         <img 
           src={CAMERA_URL}
           alt="Video Stream Disconnected, refresh to try to reconnect..." 
-          className="w-[400px] h-auto object-cover rounded-xl border-2 border-black" />
+          className="rotate-180 w-[400px] h-auto object-cover rounded-xl border-2 border-black" />
       </div>
 
     )
