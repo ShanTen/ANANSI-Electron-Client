@@ -1,30 +1,28 @@
-# React + TypeScript + Vite
+# Electron client for ANANSI 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## What is ANANSI
 
-Currently, two official plugins are available:
+ANANSI is a hexapod designed for search and rescue operations powered by the ST-Discovery-L475E-IOT01A designed and presented for [AICTE Inventor's Challenge](https://community.arm.com/the-inventors-challenge-2024).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What is this code?
 
-## Expanding the ESLint configuration
+It is the Electron client used to control the robot and view sensor readings.
+It interfaces with the [ANANSI REST API](https://github.com/ShanTen/ANANSI-REST-API) to obtain sensor readings from the sensor cache and POSTs movements to the movement queue. 
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+The code also contains an embedded UDP server for LiDAR position information which reads the incoming UDP stream from the (raspberry pi zero)[https://github.com/ShanTen/ANANSI-PI-code].
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Made with React + TypeScript + Vite + Tailwind CSS
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Networking 
+
++ Polling /GET SENSOR-DATA from [ANANSI REST API](https://github.com/ShanTen/ANANSI-REST-API)
++ /POST-ing movement data to [ANANSI REST API](https://github.com/ShanTen/ANANSI-REST-API) (if any)
++ dgram UDP server for LiDAR data.
++ mpeg stream for video feed
+
+## Screenshot from application
+
+![](/images/ApplicationScreenshot01.jpg )
+
+> Bro literally nobody is going to read this what's the point dawg 😭
