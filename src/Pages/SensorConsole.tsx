@@ -29,9 +29,9 @@ const SensorConsole = () => {
             <div className='w-full h-full items-center'>
                 {/* top section */}
                 <div className='flex items-center border-2 rounded-lg justify-between'>
-                    <TitleBar title="Status: Disconnected" />
+                    <TitleBar title="Status: Connected" />
                     <TitleBar title="Sensor Console" />
-                    <TitleBar title="Uptime: 1hr" />
+                    <TitleBar title="Uptime: 5min" />
                 </div>
                 {/* Grid Section */}
                 <div className="flex items-center justify-center mt-2">
