@@ -27,6 +27,8 @@ const LiDARScanner = () => {
             const { x, y } = PolarToCartesianWithScaling(dot[0], dot[1]);
             newDots.push({ x: 25 + x, y: 25 + y }); //this is the center of the circle
           }
+          console.log("LiDAR Values: ")
+          console.log(newDots)
           setDots(newDots)
       })
 

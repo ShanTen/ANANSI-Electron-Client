@@ -11,17 +11,27 @@ import SensorDataCell from '../Components/SensorDataCell'
 import Dpad from '../Components/DpadCell'
 import LiDARScanner from '../Components/LiDARScanner'
 
+
+const getMinutesPassed = (startTime : number, endTime : number) => {
+
+}
+
 const SensorConsole = () => {    
     const [data, setData] = useState<any>([])
+    const [startTimeEpoch, setStartTimeEpoch] = useState<number>((new Date()).getTime());
+    const [currentTimeEpoch, setCurrentTimeEpoch] = useState<number>((new Date()).getTime());
+
 
     useEffect(() => {
         setInterval(()=> {
-            console.log(`fetching data from ${API_HOST}`)
+            // console.log(`fetching data from ${API_HOST}`)
             axios.get(`${API_HOST}/sensor-data`)
             .then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
                 setData(response.data)
             })    
+
+            setCurrentTimeEpoch((new Date()).getTime())
         }, 1000);
     }, [])
 
@@ -29,9 +39,9 @@ const SensorConsole = () => {
             <div className='w-full h-full items-center'>
                 {/* top section */}
                 <div className='flex items-center border-2 rounded-lg justify-between'>
-                    <TitleBar title="Status: Connected" />
+                    <TitleBar title="Status: Online" />
                     <TitleBar title="Sensor Console" />
-                    <TitleBar title="Uptime: 5min" />
+                    <TitleBar title={`Uptime: ${Math.floor((currentTimeEpoch-startTimeEpoch)/1000/60)} mins`} />
                 </div>
                 {/* Grid Section */}
                 <div className="flex items-center justify-center mt-2">
